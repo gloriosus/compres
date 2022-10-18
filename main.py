@@ -1,14 +1,16 @@
-THRESHOLD_VALUE = 0.8
+import math
 
-sample = "some data"
-tokens = get_tokens(sample)
+def get_sets(_data: str):
+    _sets = []
+    sets_count = math.ceil(len(data) / SET_SIZE)
+    for i in range(0, sets_count):
+        if i == sets_count - 1:
+            _sets.append(_data[i*SET_SIZE..len(data)])
+        _sets.append(_data[i*SET_SIZE..(i+1)*SET_SIZE])
+    return _sets
 
-for i in range(0, len(tokens)):
-    binary = get_binary(tokens[i])
-    matrix = get_matrix(binary)
-    corr = corr_calc(matrix)
+SET_SIZE = 8
 
-    if corr >= THRESHOLD_VALUE:
-        compress(matrix)
-
-    # Return the compressed data
+data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut arcu tincidunt, pharetra massa sed, " \
+       "dictum nibh. Nunc mattis ipsum vel. "
+sets = get_sets(data)
