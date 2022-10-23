@@ -56,6 +56,10 @@ def get_overlaps(block: np.ndarray) -> list:
     return overlaps
 
 
+def calc_efficiency(overlaps: list, blocks: list) -> float:
+    return max(overlaps) / len(blocks)
+
+
 sample = "helloworldstring"
 result_sets = get_sets(sample, SET_SIZE)
 
@@ -67,8 +71,10 @@ matrix = get_matrix(word)
 blocks = get_blocks(matrix, (2, 2))
 # Step 4
 overlaps = get_overlaps(blocks[3])
+# Step 5
+efficiency = calc_efficiency(overlaps, blocks)
 
 print(word)
 print(get_matrix(word))
 
-print(overlaps)
+print(efficiency)
