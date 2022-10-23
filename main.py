@@ -32,17 +32,12 @@ def optimal_size(length: int):
     return row, int(col)
 
 
-def get_blocks(matrix: np.ndarray) -> list:
-    num_rows, num_cols = matrix.shape
-    max_rows = int(num_rows / 4)
-    max_cols = int(num_cols / 4)
-
+def get_blocks(matrix: np.ndarray, size: tuple) -> list:
     blocks = list()
 
-    for i_row in range(0, max_rows):
-        for i_col in range(0, max_cols):
-            if i_row != 0 or i_col != 0:
-                blocks.append(matrix[0:i_row+1, 0:i_col+1])
+    for i_row in range(0, int(matrix.shape[0] / size[0])):
+        for i_col in range(0, int(matrix.shape[1] / size[1])):
+            blocks.append(matrix[i_row*size[0]:i_row*size[0]+size[0], i_col*size[1]:i_col*size[1]+size[1]])
 
     return blocks
 
@@ -55,9 +50,9 @@ word = get_binary(result_sets[0])
 # Step 2
 matrix = get_matrix(word)
 # Step 3
-blocks = get_blocks(matrix)
+blocks = get_blocks(matrix, (2, 2))
 
 print(word)
 print(get_matrix(word))
 
-print(blocks[2])
+print(blocks[15])
