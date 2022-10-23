@@ -42,6 +42,20 @@ def get_blocks(matrix: np.ndarray, size: tuple) -> list:
     return blocks
 
 
+def get_overlaps(block: np.ndarray) -> list:
+    overlaps = list()
+    flat = block.flatten()
+
+    for i in range(0, len(flat)):
+        count = 0
+        for j in range(0, len(flat)):
+            if flat[i] == flat[j]:
+                count = count + 1
+        overlaps.append(count)
+
+    return overlaps
+
+
 sample = "helloworldstring"
 result_sets = get_sets(sample, SET_SIZE)
 
@@ -51,8 +65,10 @@ word = get_binary(result_sets[0])
 matrix = get_matrix(word)
 # Step 3
 blocks = get_blocks(matrix, (2, 2))
+# Step 4
+overlaps = get_overlaps(blocks[3])
 
 print(word)
 print(get_matrix(word))
 
-print(blocks[15])
+print(overlaps)
