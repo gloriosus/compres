@@ -60,6 +60,14 @@ def calc_efficiency(overlaps: list, blocks: list) -> float:
     return max(overlaps) / len(blocks)
 
 
+def blocks_to_decimal(blocks: list) -> np.ndarray:
+    numbers = list()
+    for i in range(0, len(blocks)):
+        str_bytes = "".join(str(x) for x in blocks[i].flatten())
+        numbers.append(int(str_bytes, 2))
+    return np.asarray(numbers, dtype=np.int)
+
+
 sample = "helloworldstring"
 result_sets = get_sets(sample, SET_SIZE)
 
@@ -73,8 +81,10 @@ blocks = get_blocks(matrix, (2, 2))
 overlaps = get_overlaps(blocks[3])
 # Step 5
 efficiency = calc_efficiency(overlaps, blocks)
+# Step 6
+numbers = blocks_to_decimal(blocks)
 
 print(word)
 print(get_matrix(word))
 
-print(efficiency)
+print(numbers)
