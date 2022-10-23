@@ -32,10 +32,32 @@ def optimal_size(length: int):
     return row, int(col)
 
 
+def get_blocks(matrix: np.ndarray) -> list:
+    num_rows, num_cols = matrix.shape
+    max_rows = int(num_rows / 4)
+    max_cols = int(num_cols / 4)
+
+    blocks = list()
+
+    for i_row in range(0, max_rows):
+        for i_col in range(0, max_cols):
+            if i_row != 0 or i_col != 0:
+                blocks.append(matrix[0:i_row+1, 0:i_col+1])
+
+    return blocks
+
+
 sample = "helloworldstring"
 result_sets = get_sets(sample, SET_SIZE)
 
+# Step 1
 word = get_binary(result_sets[0])
+# Step 2
+matrix = get_matrix(word)
+# Step 3
+blocks = get_blocks(matrix)
 
 print(word)
 print(get_matrix(word))
+
+print(blocks[2])
