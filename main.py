@@ -65,7 +65,7 @@ def blocks_to_decimal(blocks: list) -> np.ndarray:
     for i in range(0, len(blocks)):
         str_bytes = "".join(str(x) for x in blocks[i].flatten())
         numbers.append(int(str_bytes, 2))
-    return np.asarray(numbers, dtype=np.int)
+    return np.asarray(numbers, dtype=int)
 
 
 sample = "helloworldstring"
